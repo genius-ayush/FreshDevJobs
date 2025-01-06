@@ -27,13 +27,14 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+       <Providers>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased bg-gradient-light dark:bg-gradient min-h-screen relative flex flex-col dark:bg-[#020817]`}
       >
-        <Providers>
+       
         <main className="grow grid ">{children}</main>
-        </Providers>
       </body>
+        </Providers>
     </html>
   );
 }

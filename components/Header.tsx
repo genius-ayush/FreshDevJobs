@@ -1,21 +1,11 @@
 'use client';
-// import { NavItem } from '@/components/navitem';
-import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
-import { Button } from '@/components/ui/button';
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuSeparator,
-  DropdownMenuTrigger,
-} from '@/components/ui/dropdown-menu';
-import { Skeleton } from '@/components/ui/skeleton';
 import { Moon, Sun } from 'lucide-react'; 
 import { useTheme } from 'next-themes';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react' ;
+import MobileNav from './MobileNav';
 
 export const CompanyLogo = () => {
   return (
@@ -72,17 +62,14 @@ const Header = () => {
                 </button>
               )}
             </div>
-            {/* <div className="hidden md:block">
-              Login
-            </div> */}
 
             <div className="md:hidden flex justify-center ml-3">
-              {/* <MobileNav /> */}
+              <MobileNav/>
+            
             </div>
           </div>
         </div>
       </nav>
-      <div className="h-[72px] print:hidden"></div>
     </>
   );
 };
