@@ -59,9 +59,34 @@ const data = [
   },
 ]
 // import _ from 'lodash';
+interface JobPostInterface {
+  id: string;
+  title: string;
+  slug: string;
+  companyImage: {
+    url: string;
+  };
+  body: {
+    html: string;
+  };
+  author: string;
+  salary: string;
+  createdAt: string;
+  skill: string[];
+  experience: {
+    experience: string;
+  };
+  domain: {
+    domain: string;
+  };
+  jobTypeReference: {
+    jobType: string;
+  };
+  apply: string;
+}
 
 
-export default function JobCard() {
+export default function JobCard(props : JobPostInterface) {
   const [goal, setGoal] = React.useState(350)
  
   function onClick(adjustment: number) {
@@ -78,29 +103,29 @@ export default function JobCard() {
             
               <Image
                 className="size-full object-contain"
-                src={"/logo"}
+                src={"/imageurl"}
                 width={'500'}
                 height={'500'}
                 alt="company-logo"
               />
           </div>
           <div className="flex flex-col gap-2">
-            <h2 className="font-bold">Software Developer Inern</h2>
+            <h2 className="font-bold"></h2>
             <div className="text-xs flex gap-1 font-medium items-center text-gray-500">
               <span>Google</span>•
-              <span>Posted on - 7 Jan 2025</span>
+              <span>Posted on - 9th may </span>
             </div>
           </div>
         </div>
         <div className="flex items-center gap-4">
           <div className="px-4 py-1 w-fit text-blue-500 bg-blue-500/20 rounded-lg flex items-center justify-center text-xs font-bold">
             
-            UI/UX designer 
+           Ux Designer
           </div>
           <div className="flex items-center gap-2">
             <MapPin size={16} />
             <p className="text-xs font-semibold">
-                delhi - remote
+                100k usd 
             </p>
           </div>
         </div>
