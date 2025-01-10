@@ -86,8 +86,8 @@ function AllJobs() {
           }
         );
         const jobs = response.data.data.jobPosts;
-        // console.log(jobs) ; 
-        setJobs(jobs);
+        setJobs(jobs); 
+
         // setLoading(false);
       } catch (err) {
         setErr("Failed to load Jobs");
@@ -98,10 +98,10 @@ function AllJobs() {
     fetchJobs() ; 
   }, [])
   return (
-    <div className='flex flex-col gap-2'>
-      
+    <div className='flex flex-col gap-2'>      
       {jobs.map((job)=>(
-        <JobCard props={jobs}/>
+        //@ts-ignore
+        <JobCard job={job}/>
       ))}
     </div>
   )

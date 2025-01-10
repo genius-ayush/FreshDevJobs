@@ -1,5 +1,5 @@
 import type { Config } from "tailwindcss";
-
+const { fontFamily } = require('tailwindcss/defaultTheme');
 export default {
     darkMode: ["class"],
     content: [
@@ -8,7 +8,17 @@ export default {
     "./app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
+
+	container: {
+		center: true,
+		padding: '1rem',
+		screens: {
+		  '2xl': '1200px',
+		},
+	  },
   	extend: {
+
+		
 		colors: {
 			'stroke-primary': 'hsl(var(--stroke-primary))',
 			'stroke-secondary': 'hsl(var(--stroke-secondary))',

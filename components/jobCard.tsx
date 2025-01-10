@@ -2,7 +2,7 @@
 // import { JobType } from '@/types/jobs.types';
 import React from 'react';
 import Image from 'next/image';
-import { MapPin } from 'lucide-react';
+import { Landmark, MapPin } from 'lucide-react';
 import Link from 'next/link';
 import { Button } from "@/components/ui/button"
 import { Minus, Plus } from "lucide-react"
@@ -16,6 +16,7 @@ import {
   DrawerTitle,
   DrawerTrigger,
 } from "@/components/ui/drawer"
+import { jobSorting } from '@/lib/constant/jobs.constant';
 
 const data = [
   {
@@ -85,17 +86,35 @@ interface JobPostInterface {
   apply: string;
 }
 
+//@ts-ignore
+function DateFormatter({ isoDate }) {
+  const date = new Date(isoDate);
 
-export default function JobCard(props : JobPostInterface) {
+  
+  const options: Intl.DateTimeFormatOptions = {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+  };
+  
+  const formattedDate = date.toLocaleDateString("en-US", options);
+
+  return <span>{formattedDate}</span>;
+}
+
+//@ts-ignore
+export default function JobCard({job}: JobPostInterface) {
   const [goal, setGoal] = React.useState(350)
- 
+  console.log(job) ;
+  console.log(job.body) 
+  
   function onClick(adjustment: number) {
     setGoal(Math.max(200, Math.min(400, goal + adjustment)))
   }
   return (
     <div>
     {/* <Link href={`/jobs/1`}> */}
-      <Drawer>
+      <Drawer >
       <DrawerTrigger asChild>
       <div className="border  transition-all duration-115 ease-linear hover:bg-lightBgSecondary dark:hover:bg-darkBgSecondary flex flex-col gap-6 h-fit max-h-[10rem] p-4 rounded-xl">
         <div className="flex gap-4 items-center">
@@ -103,82 +122,58 @@ export default function JobCard(props : JobPostInterface) {
             
               <Image
                 className="size-full object-contain"
-                src={"/imageurl"}
+                src={job.companyImage.url}
                 width={'500'}
                 height={'500'}
                 alt="company-logo"
               />
           </div>
           <div className="flex flex-col gap-2">
-            <h2 className="font-bold"></h2>
+            <h2 className="font-bold">{job.title}</h2>
             <div className="text-xs flex gap-1 font-medium items-center text-gray-500">
-              <span>Google</span>•
-              <span>Posted on - 9th may </span>
+              <span>{job.jobTypeReference.jobType}</span>•
+              <span>Posted on  <DateFormatter isoDate={job.createdAt}/>  </span>
             </div>
           </div>
         </div>
         <div className="flex items-center gap-4">
           <div className="px-4 py-1 w-fit text-blue-500 bg-blue-500/20 rounded-lg flex items-center justify-center text-xs font-bold">
             
-           Ux Designer
+           {job.domain.domain}
           </div>
           <div className="flex items-center gap-2">
-            <MapPin size={16} />
+            <Landmark size={16}/>
             <p className="text-xs font-semibold">
-                100k usd 
+            {job.salary}
             </p>
           </div>
         </div>
       </div>
       </DrawerTrigger>
       <DrawerContent className=''>
-        <div className="mx-auto w-full max-w-sm ">
+        <div className="mx-auto w-2/3  ">
           <DrawerHeader>
-            <DrawerTitle>Move Goal</DrawerTitle>
+            <DrawerTitle>{job.title}</DrawerTitle>
             <DrawerDescription>Set your daily activity goal.</DrawerDescription>
           </DrawerHeader>
-          <div className="p-4 pb-0">
-            <div className="flex items-center justify-center space-x-2">
-              <Button
-                variant="outline"
-                size="icon"
-                className="h-8 w-8 shrink-0 rounded-full"
-                onClick={() => onClick(-10)}
-                disabled={goal <= 200}
-              >
-                <Minus />
-                <span className="sr-only">Decrease</span>
-              </Button>
-              <div className="flex-1 text-center">
-                <div className="text-7xl font-bold tracking-tighter">
-                  {goal}
-                </div>
-                <div className="text-[0.70rem] uppercase text-muted-foreground">
-                  Calories/day
-                </div>
-              </div>
-              <Button
-                variant="outline"
-                size="icon"
-                className="h-8 w-8 shrink-0 rounded-full"
-                onClick={() => onClick(10)}
-                disabled={goal >= 400}
-              >
-                <Plus />
-                <span className="sr-only">Increase</span>
-              </Button>
+          {/* <div className="p-4 pb-0">
+            <div className="flex items-center justify-center space-x-2"> */}
+              
+            <div dangerouslySetInnerHTML={{ __html: job.body.html }} />
+              
+                
             </div>
-            <div className="mt-3 h-[120px]">
+            {/* <div className="mt-3 h-[120px]">
               hey 
-            </div>
-          </div>
-          <DrawerFooter>
+            </div> */}
+          {/* </div> */}
+          {/* <DrawerFooter>
             <Button>Submit</Button>
             <DrawerClose asChild>
               <Button variant="outline">Cancel</Button>
             </DrawerClose>
-          </DrawerFooter>
-        </div>
+          </DrawerFooter> */}
+        {/* </div> */}
       </DrawerContent>
       </Drawer>
     {/* </Link> */}
