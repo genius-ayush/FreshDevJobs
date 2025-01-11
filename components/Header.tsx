@@ -45,13 +45,14 @@ const Header = () => {
           </Link>
           <div className="flex items-center">
 
-            <ul className="md:flex items-center gap-4 text-sm lg:gap-6 hidden mx-4">Explore jobs</ul>
-            <ul className="md:flex items-center gap-4 text-sm lg:gap-6 hidden mx-4">Contact us</ul>
+            <Link href={"/jobs"}><ul className="md:flex items-center gap-4 text-sm lg:gap-6 hidden mx-4 hover:pointer hover:text-gray-300">Explore jobs</ul></Link>
+
+            <Link target="_blank" href={"https://portfolio-henna-ten-43.vercel.app/"}><ul className="md:flex items-center gap-4 text-sm lg:gap-6 hidden mx-4 hover:pointer hover:text-gray-300">Contact us</ul></Link>
             <div className="flex items-center">
               {mounted && (
                 <button
                   className="border p-2.5 rounded-lg text-foreground/60 hover:dark:bg-[#191919] hover:bg-gray-100 md:mx-4 outline-none"
-                  onClick={toggleTheme}
+                  onClick={toggleTheme} 
                   aria-label="theme"
                 >
                   {theme === 'dark' ? (
