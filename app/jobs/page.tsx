@@ -1,4 +1,5 @@
 import AllJobs from '@/components/AllJobs'
+import JobsHeader from '@/components/JobHeader'
 import React from 'react'
 
 function page() {
@@ -21,7 +22,7 @@ function page() {
 
                 <div className="grow flex flex-col ">
                     <div className="sticky top-[4.5rem]  z-10 py-4">
-                        JobsHeaders
+                        <JobsHeader/>
                     </div>
 
                     <div className="grow ">
