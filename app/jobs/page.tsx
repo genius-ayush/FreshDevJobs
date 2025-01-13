@@ -14,15 +14,15 @@ function page() {
             </div>
 
             <div className="flex gap-6">
-                <div className="hidden w-[310px] rounded-lg sm:block border h-[calc(100vh-100px)] overflow-y-auto scrollbar-custom sticky top-[5.5rem]">
+                {/* <div className="hidden w-[310px] rounded-lg sm:block border h-[calc(100vh-100px)] overflow-y-auto scrollbar-custom sticky top-[5.5rem]">
                     <div className=" ">
                         JobFilters
                     </div>
-                </div>
+                </div> */}
 
                 <div className="grow flex flex-col ">
                     <div className="sticky top-[4.5rem]  z-10 py-4">
-                        <JobsHeader/>
+                        {/* <JobsHeader/> */}
                     </div>
 
                     <div className="grow ">
